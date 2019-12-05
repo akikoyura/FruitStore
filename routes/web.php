@@ -56,6 +56,18 @@ Route::group(['middleware'=>['frontlogin']],function (){
     Route::match(['get', 'post'], 'checkout','ProductsController@checkout');
     //Order Review Page
     Route::match(['get', 'post'], '/order-review','ProductsController@orderReview');
+    //Place Order
+    Route::match(['get', 'post'], '/place-order','ProductsController@placeOrder');
+    //Paypal page
+    Route::get('/paypal','ProductsController@paypal');
+    //Thanks Page
+    Route::get('/thanks','ProductsController@thanks');
+    //User Orders Page
+    Route::get('/orders','ProductsController@userOrders');
+    //User Ordered Products Page
+    Route::get('/orders/{id}','ProductsController@userOrderDetails');
+    //Paypal Thanks page
+    Route::get('/paypal/thanks','ProductsController@thanksPaypal');
 });
 //Confirm Account
 Route::get('confirm/{code}','UsersController@confirmAccount');
@@ -68,7 +80,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/dashboard', 'AdminController@dashboard');
     Route::get('/admin/settings', 'AdminController@settings');
-
     Route::get('/admin/check-pwd', 'AdminController@chkPassword');
     Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePassword');
 

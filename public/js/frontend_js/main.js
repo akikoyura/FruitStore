@@ -1,26 +1,26 @@
 $(document).ready(function () {
     $('#selSize').change(function () {
-        var idSize  = $(this).val();
-        if(idSize==""){
+        var idSize = $(this).val();
+        if (idSize == "") {
             return false;
         }
         $.ajax({
             type: 'get',
             url: '/get-product-price',
-            data:{idSize,idSize},
-            success:function (resp) {
+            data: {idSize, idSize},
+            success: function (resp) {
                 var arr = resp.split('#');
                 var double = '.00';
-                $('#getPrice').html('<span>$</span>'+arr[0].concat(double));
+                $('#getPrice').html('<span>$</span>' + arr[0].concat(double));
                 $('#price').val(arr[0]);
-                if(arr[1]==0){
+                if (arr[1] == 0) {
                     $('#cardButton').hide();
                     $('#Availability').text("Out of Stock");
-                }else{
+                } else {
                     $('#cardButton').show();
                     $('#Availability').text("In Stock");
                 }
-            },error:function () {
+            }, error: function () {
                 alert("Error");
             }
         })
@@ -29,23 +29,23 @@ $(document).ready(function () {
     $().ready(function () {
         //Validate Register form on keyup and submit
         $('#registerForm').validate({
-            rules:{
-                name:{
+            rules: {
+                name: {
                     required: true,
                     minLength: 2,
-                    accept:"[a-zA-Z]+"
+                    accept: "[a-zA-Z]+"
                 },
-                password:{
+                password: {
                     required: true,
                     minLength: 6
                 },
-                email:{
+                email: {
                     required: true,
                     email: true,
-                    remote:"/check-email"
+                    remote: "/check-email"
                 }
-            },messages:{
-                name:{
+            }, messages: {
+                name: {
                     required: "Please enter your name",
                     minLength: "Your name must be at least 2 characters long",
                     accept: "Your name must be contain letters only"
@@ -54,7 +54,7 @@ $(document).ready(function () {
                     required: "Please provide your password",
                     minLength: "Your Password must be at least 6 characters long"
                 },
-                email:{
+                email: {
                     required: "Please enter you email",
                     email: "Please enter valid email",
                     remote: "Email already exists!"
@@ -62,48 +62,48 @@ $(document).ready(function () {
             }
         })
         $('#loginForm').validate({
-            rules:{
-                password:{
-                    required:true,
-                    minLength:6
+            rules: {
+                password: {
+                    required: true,
+                    minLength: 6
                 },
-                email:{
-                    required:true,
+                email: {
+                    required: true,
                 }
-            },messages:{
-                email:{
+            }, messages: {
+                email: {
                     required: "Please enter your Name",
                     email: "Please enter valid Email"
                 },
-                password:{
-                    required:"Please provide your Password"
+                password: {
+                    required: "Please provide your Password"
                 }
             }
         })
         $('#accountForm').validate({
-            rules:{
-                name:{
+            rules: {
+                name: {
                     required: true,
                     minLength: 2,
-                    accept:"[a-zA-Z]+"
+                    accept: "[a-zA-Z]+"
                 },
-                address:{
+                address: {
                     required: true,
                     minLength: 10
                 },
-                city:{
+                city: {
                     required: true,
-                    minLength:2
+                    minLength: 2
                 },
-                state:{
+                state: {
                     required: true,
-                    minLength:2
+                    minLength: 2
                 },
-                country:{
+                country: {
                     required: true,
                 }
-            },messages:{
-                name:{
+            }, messages: {
+                name: {
                     required: "Please enter your name",
                     minLength: "Your name must be at least 2 characters long",
                     accept: "Your name must be contain letters only"
@@ -186,10 +186,20 @@ $(document).ready(function () {
         }
     });
     //Copy Billing Address to Shipping Address Script
-    $('#billtoship').click(function () {
-        if(this.checked){
-            alert('test');
-        }
-    });
+    // $('#copyAddress').click(function () {
+    //     if(this.checked){
+    //         alert('test');
+    //         // $('#shipping_name')
+    //     }
+    // });
 
 });
+function selectPaymentMethod() {
+    if($("#Paypal").is(':checked') || $("#COD").is(':checked')){
+    }else{
+        alert("Please Select Payment Method");
+        return false;
+    }
+}
+
+

@@ -95,8 +95,7 @@
                                     <div class="wpb_wrapper">
                                         <div class="foodfarm-container container ">
                                             <div class="woocommerce">
-                                                <form name="checkout" method="post" class="checkout woocommerce-checkout" action="{{url('/')}}" >
-                                                    {{@csrf_field()}}
+                                                <form class=" woocommerce-checkout" >
                                                     <div class="row">
                                                         <div class="order-review col-md-8 col-sm-12 col-xs-12">
                                                             <h3 >Payment Options</h3>
@@ -113,10 +112,10 @@
                                                                     @foreach($userCart as $item)
                                                                     <tr class="cart_item">
                                                                         <td class="product-name">
-                                                                            <img src="{{asset('images/backend_images/products/small/'.$item->image)}}" class="img-thumbnail" width="10%" height="10%" alt="">
+                                                                            <img src="{{asset('images/backend_images/products/small/'.$item->image)}}" class="img-thumbnail" width="5%" height="5%" alt="">
                                                                        &nbsp;&nbsp;&nbsp; {{$item->product_name}}&nbsp; <strong class="product-quantity">x {{$item->quantity}}</strong> </td>
                                                                         <td class="product-total">
-                                                                            <span class="amount"><span >$</span>{{$item->price*$item->quantity}}</span>
+                                                                            <span class="amount" ><span >$</span>{{$item->price*$item->quantity}}</span>
                                                                         </td>
                                                                     </tr>
                                                                         <?php
@@ -144,26 +143,7 @@
                                                                     </tr>
                                                                     </tfoot>
                                                                 </table>
-                                                                <div id="payment" class="woocommerce-checkout-payment">
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <h3 style="margin-bottom:15px;font-weight: 700">Select Payment Method:</h3>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <div class=" form-check form-check-inline" >
-                                                                                <input type="radio" class="form-check-input" name="payment-method" id="COD" value="COD">
-                                                                                <label class="form-check-label" for="COD">COD</label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input type="radio"
-                                                                                       name="Paypal" id="Paypal" class="form-check-input" value="Paypal">
-                                                                                <label for="Paypal" class="form-check-label">Paypal</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 col-sm-12 col-xs-12 customer-details">
@@ -185,9 +165,31 @@
                                                                 <p class="form-row"><label>Shipping Mobile&nbsp;*</label><span ><input type="text" class="input-text " placeholder="Shipping Phone *" name="shipping_mobile" id="shipping_mobile" value="{{$shippingDetails->mobile}}" disabled></span></p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-row mobile-hide">
-                                                            <input type="submit" class="button btn btn-default" value="Place Order" style="margin-top: 30px; margin-left: 20px;">
+                                                    </div>
+                                                </form>
+                                                <form class="woocommerce-checkout checkout" name="checkout" method="post" action="{{url('/place-order')}}" >
+                                                    {{@csrf_field()}}
+                                                    <input type="hidden" name="grand_total" value="{{$total_amount}}">
+                                                    <div id="payment" class="woocommerce-checkout-payment">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <h3 style="margin-bottom:15px;font-weight: 700">Select Payment Method:</h3>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class=" form-check form-check-inline" >
+                                                                    <label class="form-check-label" for="COD"><input type="radio" class="form-check-input" name="payment_method" id="COD" value="COD">COD</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-check form-check-inline">
+                                                                    <label for="Paypal" class="form-check-label"><input type="radio" name="payment_method" id="Paypal" class="form-check-input" value="Paypal">Paypal</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 mb-lg-4">
+                                                                <button type="submit" class="button btn btn-default "  onclick="return selectPaymentMethod();">Place Order</button>
+                                                            </div>
                                                         </div>
+
                                                     </div>
                                                 </form>
                                             </div>

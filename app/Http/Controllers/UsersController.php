@@ -71,7 +71,13 @@ class UsersController extends Controller
                 $user->email = $data['email'];
                 $user->password = bcrypt($data['password']);
                 $user->save();
-
+                if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
+                    Session::put('frontSession',$data['email']);
+                    if(!empty(Session::get('session_id' ))){
+                        $session_id = Session::get('session_id');
+                        DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
+                    }
+                }
 
                 //Send Confirmation Email
                 $email = $data['email'];
@@ -81,10 +87,10 @@ class UsersController extends Controller
                 });
                 return redirect()->back()->with('flash_message_error','Please  confirm your email to active your account!');
 
-//                if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
-//                    Session::put('frontSession', $data['email']);
-//                    return redirect('/cart');
-//                }
+                if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
+                    Session::put('frontSession', $data['email']);
+                    return redirect('/cart');
+                }
             }
         }
         return view('users.login_register');

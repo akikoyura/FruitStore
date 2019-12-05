@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Country;
 use App\DeliveryAddress;
+use App\Order;
+use App\OrdersProduct;
 use App\User;
 use App\Product;
 use App\ProductsAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
-use DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Project;
@@ -235,8 +238,10 @@ class ProductsController extends Controller
     public function addtocart(Request $request)
     {
         $data = $request->all();
-        if (empty($data['user_email'])) {
+        if (empty(Auth::user()->email)) {
             $data['user_email'] = '';
+        } else {
+            $data['user_email'] = Auth::user()->email;
         }
         $session_id = Session::get('session_id');
         if (empty($session_id)) {
@@ -258,8 +263,13 @@ class ProductsController extends Controller
     public function cart($id = null)
     {
         $randomProducts = Product::all()->random(4);
-        $session_id = Session::get('session_id');
-        $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();
+        if (Auth::check()) {
+            $user_email = Auth::user()->email;
+            $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();
+        } else {
+            $session_id = Session::get('session_id');
+            $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();
+        }
         foreach ($userCart as $key => $product) {
             $productDetails = Product::where('id', $product->product_id)->first();
             $userCart[$key]->image = $productDetails->image;
@@ -278,63 +288,165 @@ class ProductsController extends Controller
         DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
         return redirect('cart')->with('flash_message_success', 'Product has been updated from Cart!');
     }
-    public function checkout(Request $request){
+
+    public function checkout(Request $request)
+    {
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
         $userDetails = User::find($user_id);
         $countries = Country::get();
-        $shippingCount = DeliveryAddress::where('user_id',$user_id)->count();
+        $shippingCount = DeliveryAddress::where('user_id', $user_id)->count();
         $shippingDetails = array();
-        if($shippingCount>0){
-            $shippingDetails  = DeliveryAddress::where('user_id',$user_id)->first();
+        if ($shippingCount > 0) {
+            $shippingDetails = DeliveryAddress::where('user_id', $user_id)->first();
         }
         //update cart table with user email
         $session_id = Session::get('session_id');
-        DB::table('cart')->where(['session_id'=>$session_id])->update(['user_email'=>$user_email]);
+        DB::table('cart')->where(['session_id' => $session_id])->update(['user_email' => $user_email]);
 
-        if($request->isMethod('post'))
-        {
+        if ($request->isMethod('post')) {
             $data = $request->all();
-            if(empty($data['billing_name']) ||empty($data['billing_address'])||empty($data['billing_city']) || empty('billing_state')|| empty('billing_country') || empty('billing_pincode') || empty('billing_mobile')||  empty($data["shipping_name"] ) || empty($data["shipping_address"]) || empty($data["shipping_city"])||empty($data["shipping_state"])||empty($data["shipping_country"])||empty($data["shipping_pincode"])||empty($data["shipping_mobile"])){
-                return redirect()->back()->with('flash_message_error','Please fill all fields to checkout!');
+            if (empty($data['billing_name']) || empty($data['billing_address']) || empty($data['billing_city']) || empty('billing_state') || empty('billing_country') || empty('billing_pincode') || empty('billing_mobile') || empty($data["shipping_name"]) || empty($data["shipping_address"]) || empty($data["shipping_city"]) || empty($data["shipping_state"]) || empty($data["shipping_country"]) || empty($data["shipping_pincode"]) || empty($data["shipping_mobile"])) {
+                return redirect()->back()->with('flash_message_error', 'Please fill all fields to checkout!');
             }
 
             //Where user Details
-            User::where("id",$user_id)->update(['name'=>$data['billing_name'],'address'=>$data['billing_address'],'city'=>$data['billing_city'],'state'=>$data['billing_state'],'pincode'=>$data['billing_pincode'],'country'=>$data['billing_country'],'mobile'=>$data['billing_mobile']]);
+            User::where("id", $user_id)->update(['name' => $data['billing_name'], 'address' => $data['billing_address'], 'city' => $data['billing_city'], 'state' => $data['billing_state'], 'pincode' => $data['billing_pincode'], 'country' => $data['billing_country'], 'mobile' => $data['billing_mobile']]);
 
-            if($shippingCount>0){
+            if ($shippingCount > 0) {
                 //Update Shipping Address
-                DeliveryAddress::where('user_id',$user_id)->update(['name'=>$data['shipping_name'],'address'=>$data['shipping_address'],'city'=>$data['shipping_city'],'state'=>$data['shipping_state'],'pincode'=>$data['shipping_pincode'],'country'=>$data['shipping_country'],'mobile'=>$data['shipping_mobile']]);
-            }else{
+                DeliveryAddress::where('user_id', $user_id)->update(['name' => $data['shipping_name'], 'address' => $data['shipping_address'], 'city' => $data['shipping_city'], 'state' => $data['shipping_state'], 'pincode' => $data['shipping_pincode'], 'country' => $data['shipping_country'], 'mobile' => $data['shipping_mobile']]);
+            } else {
                 //Add new Shipping Address
                 $shipping = new DeliveryAddress();
                 $shipping->user_id = $user_id;
                 $shipping->user_email = $user_email;
                 $shipping->name = $data['shipping_name'];
-                $shipping->address= $data['shipping_address'];
+                $shipping->address = $data['shipping_address'];
                 $shipping->city = $data['shipping_city'];
                 $shipping->state = $data['shipping_state'];
-                $shipping->pincode =$data['shipping_pincode'];
+                $shipping->pincode = $data['shipping_pincode'];
                 $shipping->country = $data['shipping_country'];
-                $shipping->mobile= $data['shipping_mobile'];
+                $shipping->mobile = $data['shipping_mobile'];
                 $shipping->save();
             }
             return redirect()->action('ProductsController@orderReview');
         }
-        return view('checkout')->with(compact('userDetails','countries','shippingDetails'));
+        return view('checkout')->with(compact('userDetails', 'countries', 'shippingDetails'));
     }
-    public function orderReview(){
+
+    public function orderReview()
+    {
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
-        $userDetails  = User::where('id',$user_id)->first();
-        $shippingDetails = DeliveryAddress::where('user_id',$user_id)->first();
+        $userDetails = User::where('id', $user_id)->first();
+        $shippingDetails = DeliveryAddress::where('user_id', $user_id)->first();
         $shippingDetails = json_decode(json_encode($shippingDetails));
-        $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
-        foreach ($userCart as $key =>$product){
-            $productDetails = Product::where('id',$product->product_id)->first();
+        $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();
+        foreach ($userCart as $key => $product) {
+            $productDetails = Product::where('id', $product->product_id)->first();
             $userCart[$key]->image = $productDetails->image;
         }
-        return view('order_review')->with(compact('userDetails','shippingDetails','userCart'));
+        return view('order_review')->with(compact('userDetails', 'shippingDetails', 'userCart'));
+    }
+
+    public function placeOrder(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            $user_id = Auth::user()->id;
+            $user_email = Auth::user()->email;
+            //Get shipping Address of User
+            $shippingDetails = DeliveryAddress::where(['user_email' => $user_email])->first();
+            $order = new Order();
+            $order->user_id = $user_id;
+            $order->user_email = $user_email;
+            $order->name = $shippingDetails->name;
+            $order->address = $shippingDetails->address;
+            $order->city = $shippingDetails->city;
+            $order->state = $shippingDetails->state;
+            $order->pincode = $shippingDetails->pincode;
+            $order->country = $shippingDetails->country;
+            $order->order_status = "New";
+            $order->payment_method = $data['payment_method'];
+            $order->mobile = $shippingDetails->mobile;
+            $order->grand_total = $data['grand_total'];
+            $order->save();
+
+            $order_id = DB::getPdo()->lastInsertId();
+            $cartProducts = DB::table('cart')->where(['user_email' => $user_email])->get();
+            foreach ($cartProducts as $cart) {
+                $cartPro = new OrdersProduct();
+                $cartPro->order_id = $order_id;
+                $cartPro->user_id = $user_id;
+                $cartPro->product_id = $cart->product_id;
+                $cartPro->product_name = $cart->product_name;
+                $cartPro->product_code = $cart->product_code;
+                $cartPro->product_color = $cart->product_color;
+                $cartPro->product_size = $cart->size;
+                $cartPro->product_price = $cart->price;
+                $cartPro->product_qty = $cart->quantity;
+                $cartPro->save();
+            }
+            Session::put('order_id', $order_id);
+            Session::put('grand_total', $data['grand_total']);
+            if ($data['payment_method'] == "COD") {
+                //COD - Redirect user to thanks page after saving order
+                /*Code for Order Email Start*/
+                $productDetails = Order::with('orders')->where('id', $order_id)->first();
+                $userDetails = User::where('id', $user_id)->first();
+                $email = $user_email;
+                $messageData = ['email' => $email,
+                    'name' => $shippingDetails->name,
+                    'order_id' => $order_id,
+                    'productDetails'=>$productDetails,
+                    'userDetails'=>$userDetails];
+                Mail::send('email.email_order', $messageData, function ($message) use ($email) {
+                    $message->to($email)->subject('Order Placed - E-com website');
+                });
+                /*Code for Order Email End*/
+                return redirect('/thanks');
+            } else {
+                //Paypal - Redirect user to thanks page after saving order
+                return redirect('/paypal');
+            }
+        }
+    }
+
+    public function thanks(Request $request)
+    {
+        $user_email = Auth::user()->email;
+        DB::table('cart')->where('user_email', $user_email)->delete();
+        return view('thanks');
+    }
+
+    public function userOrders()
+    {
+        $user_id = Auth::user()->id;
+        $orders = Order::with('orders')->where('user_id', $user_id)->orderBy('id', 'DESC')->get();
+        $orders = json_decode(json_encode($orders));
+        return view('users_order')->with(compact('orders'));
+    }
+
+    public function userOrderDetails($order_id)
+    {
+        $user_id = Auth::user()->id;
+        $orderDetails = Order::with('orders')->where('id', $order_id)->first();
+        return view('user_order_details')->with(compact('orderDetails'));
+    }
+
+    public function paypal(Request $request)
+    {
+        $user_email = Auth::user()->id;
+        DB::table('cart')->where('user_email', $user_email)->delete();
+        return view('paypal');
+    }
+
+    public function thanksPaypal()
+    {
+        $user_email = Auth::user()->id;
+        DB::table('cart')->where('user_email', $user_email)->delete();
+        return view('thanks_paypal');
     }
 
 }

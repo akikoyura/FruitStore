@@ -125,7 +125,7 @@
                                                                 <p class="form-row">
                                                                     <span ><input type="text" class="input-text " placeholder="Billing Phone *" name="billing_mobile" id="billing_mobile" value="{{$userDetails->mobile}}"></span></p>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="billtoship" name="billtoship" data-value="{{$userDetails->name}}">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="copyAddress" name="copyAddress" data-value="{{$userDetails->name}}">
                                                                     <label class="form-check-label" for="billtoship">Shipping Address same as Billing Address
                                                                     </label>
                                                                 </div>
@@ -188,10 +188,11 @@
                 "active"))
         }
     </script>
-    <script src="{{asset('js/frontend_js/main.js')}}"></script>
     <!-- //footer -->
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/frontend_js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('/js/backend_js/jquery.validate.js')}}"></script>
+    <script src="{{asset('js/frontend_js/main.js')}}"></script>
     <script>
         $(document).ready(function () {
             $(".dropdown").hover(
