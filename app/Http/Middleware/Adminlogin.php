@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 
 class Adminlogin
 {
@@ -15,6 +16,9 @@ class Adminlogin
      */
     public function handle($request, Closure $next)
     {
+        if(empty(Session::has('adminSession'))){
+            return redirect('/admin');
+        }
         return $next($request);
     }
 }

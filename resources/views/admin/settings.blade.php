@@ -52,6 +52,14 @@
                         {{csrf_field()}}
                         <div class="card-body">
                             <h4 class="card-title text-center">Update Password</h4>
+
+                            <div class="form-group row">
+                                <label for="current_username" class="col-sm-3 text-right control-label col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="current_username" id="current_username" class="form-control" placeholder="Your Current Username" required value="{{$adminDetails->username}}" readonly=""/>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="current_pwd" class="col-sm-3 text-right control-label col-form-label">Current Password</label>
                                 <div class="col-sm-9">

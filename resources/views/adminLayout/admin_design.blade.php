@@ -11,7 +11,7 @@
         <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset("./images/backend_images/favicon.png")}}">
     @yield('header')
-    <title>Admin Page </title>
+    <title>Ecommerce Admin</title>
 </head>
 <body>
 <!-- ============================================================== -->

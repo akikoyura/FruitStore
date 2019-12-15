@@ -108,6 +108,7 @@ class UsersController extends Controller
     public function logout(){
         Auth::logout();
         Session::forget('frontSession');
+        Session::forget('session_id');
         return redirect('/')->with('flash_message_success','Log out successfully');
     }
     public function login(Request $request){
@@ -175,5 +176,9 @@ class UsersController extends Controller
         }else{
             abort(404);
         }
+    }
+    public function viewUsers(){
+        $users = User::get();
+        return view('admin.user.view_users')->with(compact('users'));
     }
 }

@@ -25,6 +25,8 @@
                             <li class="dib customlinks">
                                 <a aria-expanded="false" aria-haspopup="true" data-toggle="dropdown">
                                     <i class="fa fa-user"></i><span>My Account</span> <i class="fa fa-caret-down"></i> </a>
+                                <a aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="{{url("/admin")}}" >
+                                    <i class="fa fa-address-card"></i><span>Admin</span> <i class="fa fa-caret-down"></i> </a>
                                 <div class="dib header-profile dropdown-menu">
                                     <ul>
                                         <li><a>My Account</a></li>
@@ -92,10 +94,7 @@
                                         class="dropdown-toggle caret caret-hozi"
                                         data-toggle="dropdown" role="menubar" aria-expanded="true">+</span>
                                     <ul class="children dropdown-menu">
-                                        <li><a>Food Market</a></li>
-                                        <li><a>Farm Services</a></li>
                                         <li><a href="{{url('/')}}">Food Store</a></li>
-                                        <li><a>Farm Fruits</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children  page_item_has_children"><a>About<span
@@ -133,10 +132,6 @@
                                             class="fa fa-angle-right"></i></span><span
                                         class="dropdown-toggle caret caret-hozi" data-toggle="dropdown" role="menubar"
                                         aria-expanded="true">+</span>
-                                    <ul class="children dropdown-menu">
-                                        <li><a>Gallery Grid</a></li>
-                                        <li><a>Gallery Masonry</a></li>
-                                    </ul>
                                 </li>
                                 <li><a href="Contact us.html">Contact</a></li>
                             </ul>
@@ -144,12 +139,10 @@
                                 <div class="search-block-top"><span class="btn-search" onclick="toggleFilter(this);"><i
                                             class="fa fa-search"></i></span>
                                     <div class="top-search content-filter">
-                                        <form method="post" action="#">
-                                            <div class="hidecat"><input type="text" name="s"
-                                                                        class="product-search search-field" value=""
-                                                                        placeholder="Enter keyword&hellip;"
-                                                                        autocomplete="off" data-number="4"
-                                                                        data-keypress="2">
+                                        <form method="post" action="{{url('/search-products')}}">
+                                            {{csrf_field()}}
+                                            <div class="hidecat">
+                                                <input type="text" name="product" class="product-search search-field" value="" placeholder="Enter keyword&hellip;" autocomplete="off" data-number="4" data-keypress="2">
                                                 <div>
                                                     <div class="woosearch-results"></div>
                                                 </div>
@@ -157,14 +150,13 @@
                                             <button type="submit" class="woosearch-submit submit btn-search"><i
                                                     class="pe-7s-search"></i> <i
                                                     class="fa fa-spin"></i></button>
-                                            <input type="hidden" name="post_type" value="product"/>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="mini-cart hidden-md hidden-lg">
                                     <a onclick="toggleFilter(this);" href="javascript:void(0);"> <i
                                             class="fa fa-shopping-basket"></i>
-                                        <p class="number-product">1</p>
+                                        <p class="number-product"></p>
                                     </a>
                                     <div class="cart-block content-filter">
                                         <div class="widget_shopping_cart_content"></div>

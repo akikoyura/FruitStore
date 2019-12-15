@@ -2,27 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d353c41-44b0-44b9-b590-8126564e81d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/ADMIN.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/OrdersProduct.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_02_043557_add_columns_to_orders_products.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/frontend_js/jquery-3.2.1.slim.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/email/email_order.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/paypal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/thanks.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/thanks_paypal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user_order_details.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users_order.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FruitStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FruitStore.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/frontend_js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/frontend_js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/email/confirmation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/email/confirmation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/order_review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/order_review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Adminlogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Adminlogin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_14_152309_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_14_152309_create_admins_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/admin_login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admin_login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/order_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/order_details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/view_orders.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/view_orders.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/view_users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/view_users.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminLayout/admin_design.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminLayout/admin_design.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminLayout/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminLayout/admin_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontLayout/front_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontLayout/front_header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/listing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/listing.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,6 +251,14 @@
       <workItem from="1575362628462" duration="17650000" />
       <workItem from="1575390713486" duration="6619000" />
       <workItem from="1575511746992" duration="2319000" />
+      <workItem from="1575554543395" duration="3508000" />
+      <workItem from="1575679985581" duration="601000" />
+      <workItem from="1575818209094" duration="4000" />
+      <workItem from="1576235644468" duration="1577000" />
+      <workItem from="1576243557968" duration="9977000" />
+      <workItem from="1576334645014" duration="5791000" />
+      <workItem from="1576341931910" duration="2640000" />
+      <workItem from="1576389706762" duration="6191000" />
     </task>
     <servers />
   </component>
@@ -277,22 +282,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="569" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575554929863">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state x="569" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1676.902@0.0.1676.902" timestamp="1575554929863" />
     <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575256170203">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1676.902@0.0.1676.902" timestamp="1575256170203" />
-    <state x="1006" y="381" key="NewPhpFileDialog" timestamp="1575425977514">
+    <state x="1006" y="381" key="NewPhpFileDialog" timestamp="1576391912892">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="1006" y="381" key="NewPhpFileDialog/0.0.1676.902@0.0.1676.902" timestamp="1575425977514" />
+    <state x="1006" y="381" key="NewPhpFileDialog/0.0.1676.902@0.0.1676.902" timestamp="1576391912892" />
     <state x="237" y="4" key="SettingsEditor" timestamp="1575286253709">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="237" y="4" key="SettingsEditor/0.0.1676.902@0.0.1676.902" timestamp="1575286253709" />
-    <state x="471" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1575554544479">
+    <state x="471" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1576389923840">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="471" y="228" key="com.intellij.ide.util.TipDialog/0.0.1676.902@0.0.1676.902" timestamp="1575554544479" />
+    <state x="471" y="228" key="com.intellij.ide.util.TipDialog/0.0.1676.902@0.0.1676.902" timestamp="1576389923840" />
     <state x="622" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575256246993">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
@@ -301,9 +310,20 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="410" y="202" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1575371230517" />
-    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup" timestamp="1575427671052">
+    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup" timestamp="1576398528437">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1575427671052" />
+    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1576398528437" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/admin/orders/order_details.blade.php</url>
+          <line>335</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

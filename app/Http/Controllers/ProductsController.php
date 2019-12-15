@@ -448,5 +448,31 @@ class ProductsController extends Controller
         DB::table('cart')->where('user_email', $user_email)->delete();
         return view('thanks_paypal');
     }
+    public function viewOrders(){
+        $orders = Order::with('orders')->orderBy('id','Desc')->get();
+        return view('admin.orders.view_orders')->with(compact('orders'));
+    }
+    public function viewOrderDetails($order_id){
+        $orderDetails = Order::with('orders')->where('id',$order_id)->first();
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        return view('admin.orders.order_details')->with(compact('orderDetails','userDetails'));
+    }
+    public function updateOrderStatus(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
+            return redirect()->back()->with('flash_message_success','Order Status has been updated successfully');
+        }
+    }
+    public function searchProducts(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            $categories = Category::with('categories')->where(['parent_id'=>0])->get();
+            $search_product= $data['product'];
+            $productsAll = Product::where('product_name','like','%'.$search_product.'%')->orwhere('product_name',$search_product)->get();
+            return view('listing')->with(compact('categories','productsAll','search_product'));
+        }
+    }
 
 }

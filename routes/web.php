@@ -68,6 +68,7 @@ Route::group(['middleware'=>['frontlogin']],function (){
     Route::get('/orders/{id}','ProductsController@userOrderDetails');
     //Paypal Thanks page
     Route::get('/paypal/thanks','ProductsController@thanksPaypal');
+    Route::post('/search-products','ProductsController@searchProducts');
 });
 //Confirm Account
 Route::get('confirm/{code}','UsersController@confirmAccount');
@@ -77,7 +78,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['adminlogin']], function () {
     Route::get('/admin/dashboard', 'AdminController@dashboard');
     Route::get('/admin/settings', 'AdminController@settings');
     Route::get('/admin/check-pwd', 'AdminController@chkPassword');
@@ -100,6 +101,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'post'], '/admin/add-attributes/{id}', 'ProductsController@addAttribute');
     Route::match(['get', 'post'], '/admin/edit-attributes/{id}', 'ProductsController@editAttribute');
     Route::get('/admin/delete-attribute/{id}', 'ProductsController@deleteAttribute');
-    Route::get('/logout', 'AdminController@logout');
-});
 
+    //Admin Orders Routes
+    Route::get('/admin/view-orders','ProductsController@viewOrders');
+
+    //Admin Order Details Route
+    Route::get('/admin/view-order/{id}','ProductsController@viewOrderDetails' );
+    //Update Order Status
+    Route::post('/admin/update-order-status', 'ProductsController@updateOrderStatus');
+
+    //Admin Users Route
+    Route::get('/admin/view-users','UsersController@viewUsers');
+
+});
+Route::get('/logout', 'AdminController@logout');
