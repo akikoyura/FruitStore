@@ -17,7 +17,11 @@
                                     Account</a></li>
                             <li class="customlinks"><a href="{{url('/user-logout')}}"><i class="fa fa-lock" aria-hidden="true"></i> Logout</a></li>
                                 @else
-                                <li class="customlinks"><a href="{{url('/login-register')}}"><i class="fa fa-lock" aria-hidden="true"></i> Login / Register</a></li>
+                                <li class="customlinks">
+                                    <a href="{{url('/admin')}}"><i class="fa fa-address-card" aria-hidden="true"></i>Admin Login</a>
+                                </li>
+                                <li class="customlinks"><a href="{{url('/login-register')}}"><i class="fa fa-lock" aria-hidden="true"></i>
+                                        Login / Register</a></li>
                                 @endif
                         </ul>
                         <ul class="hidden-lg hidden-md display-inline">
@@ -25,8 +29,7 @@
                             <li class="dib customlinks">
                                 <a aria-expanded="false" aria-haspopup="true" data-toggle="dropdown">
                                     <i class="fa fa-user"></i><span>My Account</span> <i class="fa fa-caret-down"></i> </a>
-                                <a aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="{{url("/admin")}}" >
-                                    <i class="fa fa-address-card"></i><span>Admin</span> <i class="fa fa-caret-down"></i> </a>
+
                                 <div class="dib header-profile dropdown-menu">
                                     <ul>
                                         <li><a>My Account</a></li>
