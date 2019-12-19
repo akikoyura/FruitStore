@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d353c41-44b0-44b9-b590-8126564e81d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/frontend_js/ckeditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontLayout/front_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontLayout/front_header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/add_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/add_category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/thanks_paypal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thanks_paypal.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,24 +153,24 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js/frontend_js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ADMIN\Music\FruitStore\resources\views" />
-      <recent name="C:\Users\ADMIN\Music\FruitStore\public\js\frontend_js" />
-      <recent name="C:\Users\ADMIN\Music\FruitStore\public\images\frontend_images" />
-      <recent name="C:\Users\ADMIN\Music\FruitStore\public\css\frontend_css" />
-      <recent name="C:\Users\ADMIN\Music\FruitStore\public\fonts\frontend_fonts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ADMIN\Music\FruitStore\]" />
       <recent name="C:\Users\ADMIN\Music\FruitStore\public\images\backend_images\products" />
       <recent name="C:\Users\ADMIN\Music\FruitStore\public\js\frontend_js" />
       <recent name="C:\Users\ADMIN\Music\FruitStore\public\css\backend_css\js" />
       <recent name="C:\Users\ADMIN\Music\FruitStore\public\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ADMIN\Music\FruitStore\public\js\frontend_js" />
+      <recent name="C:\Users\ADMIN\Music\FruitStore\resources\views" />
+      <recent name="C:\Users\ADMIN\Music\FruitStore\public\images\frontend_images" />
+      <recent name="C:\Users\ADMIN\Music\FruitStore\public\css\frontend_css" />
+      <recent name="C:\Users\ADMIN\Music\FruitStore\public\fonts\frontend_fonts" />
     </key>
   </component>
   <component name="RunManager">
@@ -242,6 +245,14 @@
       <workItem from="1576334645014" duration="5791000" />
       <workItem from="1576341931910" duration="2640000" />
       <workItem from="1576389706762" duration="6562000" />
+      <workItem from="1576411670481" duration="5369000" />
+      <workItem from="1576501286031" duration="15000" />
+      <workItem from="1576501311294" duration="248000" />
+      <workItem from="1576595145112" duration="3000" />
+      <workItem from="1576639587553" duration="37000" />
+      <workItem from="1576640880472" duration="2000" />
+      <workItem from="1576643741918" duration="4000" />
+      <workItem from="1576736616484" duration="105000" />
     </task>
     <servers />
   </component>
@@ -269,10 +280,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="569" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1676.902@0.0.1676.902" timestamp="1575554929863" />
-    <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1575256170203">
+    <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1576501294073">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1676.902@0.0.1676.902" timestamp="1575256170203" />
+    <state x="517" y="163" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1676.902@0.0.1676.902" timestamp="1576501294073" />
     <state x="1006" y="381" key="NewPhpFileDialog" timestamp="1576391912892">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
@@ -281,10 +292,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="237" y="4" key="SettingsEditor/0.0.1676.902@0.0.1676.902" timestamp="1575286253709" />
-    <state x="471" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1576389923840">
+    <state x="471" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1576736629634">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="471" y="228" key="com.intellij.ide.util.TipDialog/0.0.1676.902@0.0.1676.902" timestamp="1576389923840" />
+    <state x="471" y="228" key="com.intellij.ide.util.TipDialog/0.0.1676.902@0.0.1676.902" timestamp="1576736629634" />
     <state x="622" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575256246993">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
@@ -293,10 +304,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="410" y="202" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1575371230517" />
-    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup" timestamp="1576398528437">
+    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup" timestamp="1576736702448">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1576398528437" />
+    <state x="416" y="0" width="840" height="900" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1576736702448" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

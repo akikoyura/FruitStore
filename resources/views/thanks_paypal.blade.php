@@ -69,7 +69,6 @@
                                                         <div class="card-body">
                                                             <h3 class="cart-title text-center">YOUR PAYPAL ORDER HAS BEEN PLACED</h3>
                                                             <h5 class="cart-title text-center pt-lg-5" style="padding-top: 1rem;">Thanks for the payment. We will process your order very soon</h5>
-                                                            <h5 class="card-title text-center" style="padding-top: 1rem">Your order number is {{\Illuminate\Support\Facades\Session::get('order_id')}} and total amount paid is $ {{\Illuminate\Support\Facades\Session::get('grand_total')}}</h5>
                                                         </div>
                                                     </div>
                                                 </div>
